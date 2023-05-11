@@ -104,80 +104,68 @@ function App() {
           className="form-control w-25"
           placeholder="Enter todo description"
         />
-          <table className="table">
-          <thead>
-      <tr>
-        <th>ID</th>
-        <th>Description</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {todos.map((todo) => (
-        <tr key={todo.todo_id}>
-          <td>{todo.todo_id}</td>
-          <td>{todo.description}</td>
-          <td>
-            <button
-              className="btn btn-link ml-2"
-              onClick={() => handleShowModal(todo.todo_id, todo.description)}
-            >
-              Edit
-            </button>
-            <button
-              className="btn btn-danger"
-              onClick={() => handleDelete(todo.todo_id)}
-            >
-              Delete
-            </button>
-          </td>
+        <button className="btn btn-primary mt-2 w-25" onClick={handleCreate}>
+          Create
+        </button>
+      </div>
+      
+        <div className="d-flex flex-column justify-content-center">
+    <h3 className="text-center">Todo List</h3>
+    <table className="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Description</th>
+          <th>Action</th>
         </tr>
-      ))}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {todos.map((todo) => (
+          <tr key={todo.todo_id}>
+            <td>{todo.todo_id}</td>
+            <td>{todo.description}</td>
+            <td>
+              <button
+                className="btn btn-primary mr-2"
+                onClick={() => handleShowModal(todo.todo_id, todo.description)}
+              >
+                Edit
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={() => handleDelete(todo.todo_id)}
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
   {showModal && (
-    <div className="modal" tabIndex={-1}>
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Edit Todo</h5>
-            <button
-              type="button"
-              className="btn-close"
-              onClick={handleCloseModal}
-            ></button>
-          </div>
-          <div className="modal-body">
-            <input
-              type="text"
-              value={selectedTodo?.description || ""}
-              onChange={(e) =>
-                setSelectedTodo({
-                  ...selectedTodo,
-                  description: e.target.value,
-                })
-              }
-              className="form-control"
-            />
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={handleCloseModal}
-            >
-              Cancel
-            </button>
-            <button type="button" className="btn btn-primary" onClick={handleUpdate}>
-              Save
-            </button>
-          </div>
-        </div>
+    <div className="modal">
+      <div className="modal-content">
+        <span className="close" onClick={handleCloseModal}>
+          &times;
+        </span>
+        <h3>Edit Todo</h3>
+        <input
+          type="text"
+          value={selectedTodo?.description || ""}
+          onChange={(e) =>
+            setSelectedTodo({
+              ...selectedTodo,
+              description: e.target.value,
+            })
+          }
+          className="form-control"
+          placeholder="Enter todo description"
+        />
+        <button className="btn btn-primary mt-2" onClick={handleUpdate}>
+          Update
+        </button>
       </div>
     </div>
   )}
 </div>
-);
-}
-
-export default App;
