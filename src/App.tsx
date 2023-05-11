@@ -14,7 +14,7 @@ function App() {
   };
 
   const handleCreate = () => {
-    fetch("http://localhost:5000/todos", {
+    fetch("https://pern-todo-backend.onrender.com/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ function App() {
   };
 
   const handleUpdate = (id: number, newDescription: string) => {
-    fetch(`http://localhost:5000/todos/${id}`, {
+    fetch(`https://pern-todo-backend.onrender.com/todos/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function App() {
   };
 
   const handleDelete = (id: number) => {
-    fetch(`http://localhost:5000/todos/${id}`, {
+    fetch(`https://pern-todo-backend.onrender.com/todos/${id}`, {
       method: "DELETE",
     }).then((response) => {
       if (response.ok) {
@@ -68,7 +68,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/todos")
+    fetch("https://pern-todo-backend.onrender.com/todos")
       .then((response) => response.json())
       .then((data) => setTodos(data));
   }, []);
